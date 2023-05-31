@@ -1,4 +1,5 @@
 ﻿using DatenProtektion.Web.Modelle;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -8,10 +9,13 @@ namespace DatenProtektion.Web.Controllers
     public class ProductsController : Controller
     {
         private readonly AdventureWorks2019Context _context;
+        private readonly IDataProtector _dataProtector;
 
-        public ProductsController(AdventureWorks2019Context context)
+
+        public ProductsController(AdventureWorks2019Context context, IDataProtectionProvider dataProtectionProvider)
         {
             _context = context;
+            _dataProtector = dataProtectionProvider.CreateProtector("ProductsController");
         }
 
         // GET: Products
