@@ -174,9 +174,10 @@ public partial class AdventureWorks2019Context : DbContext
                 .HasForeignKey(d => d.ProductCategoryId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         });
-
-        
-
+        modelBuilder.Entity<Product>(p =>
+        {
+            p.Ignore(p => p.VerschlüsseltID);
+        });
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

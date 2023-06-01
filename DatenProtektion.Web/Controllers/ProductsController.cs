@@ -21,21 +21,28 @@ namespace DatenProtektion.Web.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            var adventureWorks2019Context = _context.Products.Include(p => p.ProductSubcategory).Take(100).ToListAsync(); 
-            return View(await adventureWorks2019Context);
+            var products = await _context.Products.Include(p => p.ProductSubcategory).Take(100).ToListAsync();
+
+            products.ForEach(p =>
+            {
+                p.VerschlüsseltID = _dataProtector.Protect(p.ProductId.ToString());
+            });
+            return View(products);
         }
 
         // GET: Products/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(string? id)
         {
             if (id == null || _context.Products == null)
             {
                 return NotFound();
             }
 
+            var verschlüsseltId = int.Parse(_dataProtector.Unprotect(id));
+
             var product = await _context.Products
                 .Include(p => p.ProductSubcategory)
-                .FirstOrDefaultAsync(m => m.ProductId == id);
+                .FirstOrDefaultAsync(m => m.ProductId == verschlüsseltId);
             if (product == null)
             {
                 return NotFound();
