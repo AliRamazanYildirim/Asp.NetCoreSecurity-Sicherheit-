@@ -21,11 +21,13 @@ namespace DatenProtektion.Web.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            var products = await _context.Products.Include(p => p.ProductSubcategory).Take(100).ToListAsync();
+            var products = await _context.Products.Include(p => p.ProductSubcategory).OrderBy(p => p.ProductId).Take(100).ToListAsync();
+
+            var zeitlichBegrenzt = _dataProtector.ToTimeLimitedDataProtector();
 
             products.ForEach(p =>
             {
-                p.VerschlüsseltID = _dataProtector.Protect(p.ProductId.ToString());
+                p.VerschlüsseltID = zeitlichBegrenzt.Protect(p.ProductId.ToString(), TimeSpan.FromDays(7));
             });
             return View(products);
         }
@@ -38,11 +40,15 @@ namespace DatenProtektion.Web.Controllers
                 return NotFound();
             }
 
-            var verschlüsseltId = int.Parse(_dataProtector.Unprotect(id));
+            var zeitlichBegrenzt = _dataProtector.ToTimeLimitedDataProtector();
+
+
+            var verschlüsseltId = int.Parse(zeitlichBegrenzt.Unprotect(id));
 
             var product = await _context.Products
                 .Include(p => p.ProductSubcategory)
                 .FirstOrDefaultAsync(m => m.ProductId == verschlüsseltId);
+
             if (product == null)
             {
                 return NotFound();
