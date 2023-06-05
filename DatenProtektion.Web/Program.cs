@@ -1,5 +1,7 @@
+using DatenProtektion.Web.IPMiddleware;
 using DatenProtektion.Web.Modelle;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,7 @@ builder.Services.AddDbContext<AdventureWorks2019Context>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.Configure<IpWhiteList>(builder.Configuration.GetSection("IpWhiteList"));
 
 var app = builder.Build();
 
@@ -27,6 +30,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseMiddleware<IpWhiteListMiddleware>();
 
 app.MapControllerRoute(
     name: "default",

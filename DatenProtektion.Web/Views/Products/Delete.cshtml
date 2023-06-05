@@ -153,7 +153,10 @@
             @Html.DisplayNameFor(model => model.ProductSubcategory)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductSubcategory.ProductSubcategoryId)
+            @if (Model.ProductSubcategory != null)
+            {
+                @Html.DisplayFor(modelItem => Model.ProductSubcategory.ProductSubcategoryId)
+            }
         </dd>
     </dl>
     
