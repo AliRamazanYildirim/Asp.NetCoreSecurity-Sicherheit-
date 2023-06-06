@@ -12,7 +12,7 @@ builder.Services.AddDbContext<AdventureWorks2019Context>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-builder.Services.Configure<IpWhiteList>(builder.Configuration.GetSection("IpWhiteList"));
+builder.Services.Configure<IpList>(builder.Configuration.GetSection("IpList"));
 
 var app = builder.Build();
 
@@ -31,7 +31,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.UseMiddleware<IpWhiteListMiddleware>();
+app.UseMiddleware<IpListMiddleware>();
 
 app.MapControllerRoute(
     name: "default",

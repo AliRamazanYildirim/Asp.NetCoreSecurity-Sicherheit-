@@ -1,7 +1,8 @@
 ﻿namespace DatenProtektion.Web.IPMiddleware
 {
-    public class IpWhiteList
+    public class IpList
     {
         public string[]? AllowedIPs { get; set; }
+
     }
 }
