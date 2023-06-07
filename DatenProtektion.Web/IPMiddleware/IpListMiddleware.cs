@@ -27,7 +27,15 @@ namespace DatenProtektion.Web.IPMiddleware
                 await httpContext.Response.WriteAsync("Zugriff verweigert. Ihre IP-Adresse steht auf der schwarzen Liste.");
                 return;
             }
-           
+            var istBlackList = _ipList?.BlockedIPs?.Where(x => IPAddress.Parse(x).Equals(anfrageIpAdresse)).Any();
+
+            if (istBlackList.HasValue && istBlackList.Value)
+            {
+                httpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                await httpContext.Response.WriteAsync("Zugriff verweigert. Ihre IP-Adresse steht auf der schwarzen Liste.");
+                return;
+            }
+
             if (_requestDelegate != null)
             {
                 await _requestDelegate(httpContext);
