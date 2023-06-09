@@ -1,4 +1,5 @@
-﻿using DatenProtektion.Web.Models;
+﻿using DatenProtektion.Web.Filter;
+using DatenProtektion.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -17,6 +18,7 @@ namespace DatenProtektion.Web.Controllers
         {
             return View();
         }
+        [ServiceFilter(typeof(CheckWhiteList))]
 
         public IActionResult Privacy()
         {
