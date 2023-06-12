@@ -2,10 +2,13 @@ using DatenProtektion.Web.Filter;
 using DatenProtektion.Web.IPMiddleware;
 using DatenProtektion.Web.Modelle;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+string? connectionString = builder.Configuration["ConnectionStrings:DefaultConnection"];
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<AdventureWorks2019Context>(options =>
@@ -14,6 +17,7 @@ builder.Services.AddDbContext<AdventureWorks2019Context>(options =>
 });
 builder.Services.Configure<IpList>(builder.Configuration.GetSection("IpList"));
 builder.Services.AddScoped<CheckWhiteList>();
+
 
 var app = builder.Build();
 
