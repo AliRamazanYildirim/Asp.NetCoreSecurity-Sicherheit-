@@ -1,6 +1,7 @@
 using DatenProtektion.Web.Filter;
 using DatenProtektion.Web.IPMiddleware;
 using DatenProtektion.Web.Modelle;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 
@@ -8,6 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 string? connectionString = builder.Configuration["ConnectionStrings:DefaultConnection"];
+
+var connectionBuilder = new SqlConnectionStringBuilder(connectionString);
+connectionBuilder.Password = builder.Configuration["Passwort:SqlPasswort"];
+string conString = connectionBuilder.ConnectionString;
 
 builder.Services.AddControllersWithViews();
 
