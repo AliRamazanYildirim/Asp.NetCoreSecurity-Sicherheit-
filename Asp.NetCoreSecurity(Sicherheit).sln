@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatenProtektion.Web", "DatenProtektion.Web\DatenProtektion.Web.csproj", "{67AEB624-3CD0-4BE1-8E5C-EB4A9A8EBF30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatenProtektion.Web", "DatenProtektion.Web\DatenProtektion.Web.csproj", "{67AEB624-3CD0-4BE1-8E5C-EB4A9A8EBF30}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Produkte.API", "ProdukteAPI\Produkte.API.csproj", "{97190857-7245-4CA3-9B11-2F68A955D1DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{67AEB624-3CD0-4BE1-8E5C-EB4A9A8EBF30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67AEB624-3CD0-4BE1-8E5C-EB4A9A8EBF30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67AEB624-3CD0-4BE1-8E5C-EB4A9A8EBF30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97190857-7245-4CA3-9B11-2F68A955D1DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97190857-7245-4CA3-9B11-2F68A955D1DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97190857-7245-4CA3-9B11-2F68A955D1DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97190857-7245-4CA3-9B11-2F68A955D1DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
