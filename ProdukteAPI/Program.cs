@@ -46,7 +46,7 @@ builder.Services.AddCors(options =>
 
     options.AddPolicy("AllowPolicy3", policy =>
     {
-        policy.WithOrigins("https://*:7220").SetIsOriginAllowedToAllowWildcardSubdomains()
+        policy.WithOrigins("https://*.example.com:7220").SetIsOriginAllowedToAllowWildcardSubdomains()
        .AllowAnyHeader()
        .AllowAnyMethod();
     });
