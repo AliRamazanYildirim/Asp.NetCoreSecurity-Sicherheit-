@@ -28,29 +28,50 @@ builder.Services.AddDbContext<AdventureWorks2019Context>(options =>
 //});
 #endregion
 
+#region Anwendungsebene Policy erstellen
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowPolicy", policy =>
+//    {
+//        policy.WithOrigins("https://localhost:7220")
+//    .AllowAnyHeader()
+//    .AllowAnyMethod();
+//    });
+
+//    options.AddPolicy("AllowPolicy2", policy =>
+//    {
+//        policy.WithOrigins("https://localhost:7220")
+//    .WithHeaders(HeaderNames.ContentType, "meine-header")
+//    .AllowAnyMethod();
+//    });
+
+//    options.AddPolicy("AllowPolicy3", policy =>
+//    {
+//        policy.WithOrigins("https://*.example.com:7220").SetIsOriginAllowedToAllowWildcardSubdomains()
+//    .AllowAnyHeader()
+//    .AllowAnyMethod();
+//    });
+//});
+#endregion
+
+#region Controller/Methode-ebene Policy erstellen
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowPolicy", policy =>
     {
-        policy.WithOrigins("https://localhost:7220")
-       .AllowAnyHeader()
-       .AllowAnyMethod();
+        policy.WithOrigins("https://*.example.com:7220").SetIsOriginAllowedToAllowWildcardSubdomains()
+    .AllowAnyHeader()
+    .AllowAnyMethod();
     });
 
     options.AddPolicy("AllowPolicy2", policy =>
     {
         policy.WithOrigins("https://localhost:7220")
-       .WithHeaders(HeaderNames.ContentType, "meine-header")
-       .AllowAnyMethod();
-    });
-
-    options.AddPolicy("AllowPolicy3", policy =>
-    {
-        policy.WithOrigins("https://*.example.com:7220").SetIsOriginAllowedToAllowWildcardSubdomains()
-       .AllowAnyHeader()
-       .AllowAnyMethod();
+    .AllowAnyHeader()
+    .WithMethods("GET", "POST");
     });
 });
+#endregion
 
 var app = builder.Build();
 
@@ -65,13 +86,15 @@ app.UseHttpsRedirection();
 
 //app.UseRouting();
 
-//app.UseCors();
+app.UseCors();
 
-app.UseCors("AllowPolicy");
+#region Anwendungsebene Policy
+//app.UseCors("AllowPolicy");
 
-app.UseCors("AllowPolicy2");
+//app.UseCors("AllowPolicy2");
 
-app.UseCors("AllowPolicy3");
+//app.UseCors("AllowPolicy3"); 
+#endregion
 
 app.UseAuthorization();
 
