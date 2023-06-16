@@ -27,7 +27,7 @@ namespace ProdukteAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            var adventureWorks2019Context = _context.Products.Include(p => p.ProductSubcategory).Take(100).ToListAsync();
+            var adventureWorks2019Context = _context.Products.Include(p => p.ProductSubcategory).OrderBy(p => p.ProductId).Take(100).ToListAsync();
             if (adventureWorks2019Context == null)
             {
                 return NotFound();
