@@ -1,4 +1,6 @@
-﻿@{
+﻿@model DatenProtektion.Web.Modelle.Product
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +8,51 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+@{
+    ViewData["Title"] = "Reflektiertes XSS-Beispiel";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<head>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        div {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        label {
+            width: 150px;
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+        }
+    </style>
+</head>
+
+
+<form method="post">
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+        <p>@Html.Raw(ViewBag.Name)</p>
+    </div>
+    <div>
+        <label asp-for="ProductNumber"></label>
+        <textarea asp-for="ProductNumber"></textarea>
+        <span asp-validation-for="ProductNumber"></span>
+    </div>
+    <button type="submit">Senden</button>
+</form>

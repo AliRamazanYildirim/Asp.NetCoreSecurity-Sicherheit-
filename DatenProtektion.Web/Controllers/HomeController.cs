@@ -1,4 +1,5 @@
 ﻿using DatenProtektion.Web.Filter;
+using DatenProtektion.Web.Modelle;
 using DatenProtektion.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -16,8 +17,21 @@ namespace DatenProtektion.Web.Controllers
 
         public IActionResult Index()
         {
+            HttpContext.Response.Cookies.Append("e-mail", "admin@gmail.com");
+            HttpContext.Response.Cookies.Append("passwort", "admin123");
+
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Index(string name, int nummer)
+        {
+            ViewBag.name = name;
+            ViewBag.nummer = nummer;
+
+            return View();
+        }
+
         [ServiceFilter(typeof(CheckWhiteList))]
 
         public IActionResult Privacy()
