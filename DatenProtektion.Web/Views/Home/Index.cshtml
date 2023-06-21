@@ -47,7 +47,6 @@
         <label asp-for="Name"></label>
         <input asp-for="Name" />
         <span asp-validation-for="Name"></span>
-        <p>@Html.Raw(ViewBag.Name)</p>
     </div>
     <div>
         <label asp-for="ProductNumber"></label>
@@ -55,4 +54,20 @@
         <span asp-validation-for="ProductNumber"></span>
     </div>
     <button type="submit">Senden</button>
+    <h1>
+        Namen
+    </h1>
+    @if (ViewBag.namen != null)
+    {
+        string[]? namen = ViewBag.namen as string[];
+        if (namen != null && namen.Length > 0)
+        {
+            foreach (var item in namen)
+            {
+                @*<span asp-validation-for="Name">@item</span>*@
+                <span>@Html.Raw(item)</span>
+                <hr />
+            }
+        }
+    }
 </form>

@@ -1,0 +1,13 @@
+Admin Admin-0
+.Net-0
+-0
+Admin Admin-0
+.Net Core 7-0
+<script>alert('XSS saldırısı!');</script>-0
+<script>alert('XSS saldırısı!');</script>-0
+<script>alert('XSS saldırısı!');</script>-0
+<script>alert('XSS saldırısı!');</script>-0
+<script>alert('XSS saldırısı!');</script>-0
+<script>alert(documetn.cookie);</script>-0
+<script>alert(document.cookie);</script>-0
+<script>alert(document.cookie);</script>-0

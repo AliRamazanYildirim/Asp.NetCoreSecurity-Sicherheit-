@@ -20,6 +20,11 @@ namespace DatenProtektion.Web.Controllers
             HttpContext.Response.Cookies.Append("e-mail", "admin@gmail.com");
             HttpContext.Response.Cookies.Append("passwort", "admin123");
 
+            if(System.IO.File.Exists("info.txt"))
+            {
+                ViewBag.namen = System.IO.File.ReadAllLines("info.txt");
+            }
+
             return View();
         }
 
@@ -28,8 +33,9 @@ namespace DatenProtektion.Web.Controllers
         {
             ViewBag.name = name;
             ViewBag.nummer = nummer;
+            System.IO.File.AppendAllText("info.txt", $"{name}-{nummer}\n");
 
-            return View();
+            return RedirectToAction("Index");
         }
 
         [ServiceFilter(typeof(CheckWhiteList))]
