@@ -65,7 +65,8 @@
             foreach (var item in namen)
             {
                 @*<span asp-validation-for="Name">@item</span>*@
-                <span>@Html.Raw(item)</span>
+                @*<span>@Html.Raw(item)</span>*@
+                <span>@Url.Action(item)</span>
                 <hr />
             }
         }

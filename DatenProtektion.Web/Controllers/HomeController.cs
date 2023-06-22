@@ -3,16 +3,23 @@ using DatenProtektion.Web.Modelle;
 using DatenProtektion.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Text.Encodings.Web;
 
 namespace DatenProtektion.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly HtmlEncoder _htmlEncoder;
+        private readonly JavaScriptEncoder _scriptEncoder;
+        private readonly UrlEncoder _urlEncoder;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, HtmlEncoder htmlEncoder, JavaScriptEncoder scriptEncoder, UrlEncoder urlEncoder)
         {
             _logger = logger;
+            _htmlEncoder = htmlEncoder;
+            _scriptEncoder = scriptEncoder;
+            _urlEncoder = urlEncoder;
         }
 
         public IActionResult Index()
@@ -31,6 +38,13 @@ namespace DatenProtektion.Web.Controllers
         [HttpPost]
         public IActionResult Index(string name, int nummer)
         {
+            string encodedHtml = _htmlEncoder.Encode(name);
+
+            string encodedScript = _scriptEncoder.Encode(name);
+
+            string encodedUrl = _urlEncoder.Encode(name);
+
+
             ViewBag.name = name;
             ViewBag.nummer = nummer;
             System.IO.File.AppendAllText("info.txt", $"{name}-{nummer}\n");

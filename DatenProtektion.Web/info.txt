@@ -1,13 +1,10 @@
-Admin Admin-0
-.Net-0
--0
-Admin Admin-0
-.Net Core 7-0
-<script>alert('XSS saldırısı!');</script>-0
-<script>alert('XSS saldırısı!');</script>-0
-<script>alert('XSS saldırısı!');</script>-0
-<script>alert('XSS saldırısı!');</script>-0
-<script>alert('XSS saldırısı!');</script>-0
-<script>alert(documetn.cookie);</script>-0
-<script>alert(document.cookie);</script>-0
-<script>alert(document.cookie);</script>-0
+<script>alert('XSS attack!')</script>-0
+https://example.com?search=ASP.NET?C#-0-0
+https://example.com?search=ASP.NET?C#-0-0-0
+https://example.com?search=ASP.NET-0
+https://www.udemy.com/course/aspnet-core-security/learn/lecture/17678780#questions/12082386-0
+https://www.udemy.com/course/aspnet-core-security/learn/lecture/17678780#questions/12082386-0-0
+https://www.udemy.com/course/aspnet-core-security/learn/lecture/17678780#questions/12082386-0
+https://www.udemy.com/course/aspnet-core-security/learn/lecture/17678780#questions/12082386--0
+https://www.udemy.com/course/aspnet-core-security/learn/lecture/17678780#questions/12082386-0
+https://localhost:7220/-0
