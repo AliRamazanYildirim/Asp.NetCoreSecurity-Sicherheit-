@@ -34,7 +34,7 @@ namespace DatenProtektion.Web.Controllers
 
             return View();
         }
-
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public IActionResult Index(string name, int nummer)
         {

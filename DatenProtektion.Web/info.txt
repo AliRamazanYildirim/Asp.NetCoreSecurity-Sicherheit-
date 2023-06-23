@@ -8,3 +8,4 @@ https://www.udemy.com/course/aspnet-core-security/learn/lecture/17678780#questio
 https://www.udemy.com/course/aspnet-core-security/learn/lecture/17678780#questions/12082386--0
 https://www.udemy.com/course/aspnet-core-security/learn/lecture/17678780#questions/12082386-0
 https://localhost:7220/-0
+.Net Core-0
