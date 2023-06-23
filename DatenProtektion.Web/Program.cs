@@ -1,6 +1,7 @@
 using DatenProtektion.Web.Filter;
 using DatenProtektion.Web.IPMiddleware;
 using DatenProtektion.Web.Modelle;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
@@ -14,7 +15,10 @@ var connectionBuilder = new SqlConnectionStringBuilder(connectionString);
 connectionBuilder.Password = builder.Configuration["Passwort:SqlPasswort"];
 string conString = connectionBuilder.ConnectionString;
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(opt=>
+{
+    opt.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+});
 
 builder.Services.AddDbContext<AdventureWorks2019Context>(options =>
 {
