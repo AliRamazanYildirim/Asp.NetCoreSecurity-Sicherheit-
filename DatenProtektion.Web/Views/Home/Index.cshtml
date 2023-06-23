@@ -42,7 +42,7 @@
 </head>
 
 
-<form method="post">
+<form asp-antiforgery="false" method="post">
     <div>
         <label asp-for="Name"></label>
         <input asp-for="Name" />
