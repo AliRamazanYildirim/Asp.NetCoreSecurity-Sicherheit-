@@ -34,6 +34,35 @@ namespace DatenProtektion.Web.Controllers
 
             return View();
         }
+
+        public IActionResult Anmelden(string? returnUrl="/")
+        {
+            TempData["returnUrl"] = returnUrl;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Anmelden(string email, string passwort)
+        {
+            #region Ohne Redirect-Check 
+            //string returnUrl = TempData["returnUrl"]?.ToString() ?? "/";
+            //return Redirect(returnUrl);
+            #endregion
+
+            #region Mit Redirect-Check 
+            string returnUrl = TempData["returnUrl"]?.ToString() ?? "/";
+
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return Redirect("/");
+            } 
+            #endregion
+
+        }
+
         [IgnoreAntiforgeryToken]
         [HttpPost]
         public IActionResult Index(string name, int nummer)

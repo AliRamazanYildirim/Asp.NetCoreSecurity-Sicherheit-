@@ -1,0 +1,23 @@
+﻿@model DatenProtektion.Web.Models.Anmelden
+@{
+    <h2>Anmelden</h2>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                <div asp-validation-summary="All"></div>
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Passwort"></label>
+                    <input asp-for="Passwort" type="password" class="form-control" />
+                    <span asp-validation-for="Passwort"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Anmelden</button>
+            </form>
+        </div>
+    </div>
+}
