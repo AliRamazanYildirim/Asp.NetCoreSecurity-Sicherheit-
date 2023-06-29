@@ -9,6 +9,10 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form method="post" asp-action="Index">
+    <input type="text" name="suchText" />
+    <input type="submit" value="Suchen" class="btn btn-primary" />
+</form>
 <table class="table">
     <thead>
         <tr>

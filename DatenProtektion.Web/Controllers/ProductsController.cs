@@ -31,6 +31,19 @@ namespace DatenProtektion.Web.Controllers
             });
             return View(products);
         }
+        [HttpPost]
+        #region SQL Injection Attacks
+        public async Task<IActionResult> Index(string suchText, decimal listPrice)
+        {
+            //var produkt = await _context.Products.Where(x => x.Name == suchText).ToListAsync();
+            //var produkt = await _context.Products.FromSqlRaw("Select * From Production.Product Where Name=" + "'" + suchText + "'").ToListAsync();
+
+            //var produkt = await _context.Products.FromSqlRaw("SELECT * FROM Production.Product WHERE Name = {0}", suchText).ToListAsync();
+            //var produkt = await _context.Products.FromSqlInterpolated($"SELECT * FROM Production.Product WHERE Name = {suchText}").ToListAsync();
+            var produkt = await _context.Products.FromSqlRaw("SELECT * FROM Production.Product WHERE Name = {0} AND ListPrice = {1}", suchText, listPrice).ToListAsync();
+            return View(produkt);
+        } 
+        #endregion
 
         // GET: Products/Details/5
         public async Task<IActionResult> Details(string? id)
